@@ -68,8 +68,12 @@ export default function RadiationChart({
     fullTime: r.timestamp,
   }));
 
-  const maxCpm = Math.max(...history.map((r) => r.value));
-  const yMax = Math.max(100, Math.ceil(maxCpm * 1.2));
+  const values = history.map((r) => r.value);
+  const minCpm = Math.min(...values);
+  const maxCpm = Math.max(...values);
+  const padding = Math.max(1, (maxCpm - minCpm) * 0.15);
+  const yMin = Math.max(0, Math.floor(minCpm - padding));
+  const yMax = Math.ceil(maxCpm + padding);
 
   return (
     <div className="w-full rounded-xl border border-zinc-800 bg-zinc-900/50 p-4 pt-6">
@@ -99,7 +103,7 @@ export default function RadiationChart({
             minTickGap={60}
           />
           <YAxis
-            domain={[0, yMax]}
+            domain={[yMin, yMax]}
             tick={{ fontSize: 11, fill: "#52525b" }}
             tickLine={false}
             axisLine={false}
