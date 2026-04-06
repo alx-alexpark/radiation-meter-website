@@ -21,8 +21,10 @@ export default async function Home() {
 
   return (
     <div className="flex flex-1 flex-col items-center justify-center bg-zinc-950 px-4 py-12 gap-12">
-      <p className="text-lg text-zinc-400">The current radiation level at Alex&apos;s house is</p>
-      <RadiationDisplay initialReading={reading} />
+      <div className="flex flex-col items-center gap-4">
+        <p className="text-lg text-zinc-400">The current radiation level at Alex&apos;s house is</p>
+        <RadiationDisplay initialReading={reading} />
+      </div>
       <div className="w-full max-w-2xl">
         <RadiationChart initialHistory={history} />
       </div>

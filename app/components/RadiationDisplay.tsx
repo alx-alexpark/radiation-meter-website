@@ -55,7 +55,6 @@ export default function RadiationDisplay({
   if (!reading) {
     return (
       <div className="flex flex-col items-center gap-4 text-zinc-500">
-        <span className="text-6xl opacity-30">☢</span>
         <p className="text-lg">Waiting for first sensor reading...</p>
       </div>
     );
@@ -65,10 +64,6 @@ export default function RadiationDisplay({
 
   return (
     <div className="flex flex-col items-center gap-8">
-      <span className={`text-8xl ${status.color} transition-colors duration-500`}>
-        ☢
-      </span>
-
       <div className="flex flex-col items-center gap-2">
         <p className="font-mono text-6xl font-bold text-zinc-100 tabular-nums tracking-tight">
           {Math.round(reading.value)}

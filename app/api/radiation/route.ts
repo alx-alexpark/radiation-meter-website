@@ -15,6 +15,28 @@ export async function GET() {
   }
 }
 
+export async function DELETE(request: NextRequest) {
+  const apiKey = process.env.RADIATION_API_KEY;
+  const auth = request.headers.get("authorization");
+
+  if (!apiKey || auth !== `Bearer ${apiKey}`) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  try {
+    await Promise.all([
+      redis.del(RADIATION_KEY),
+      redis.del(RADIATION_HISTORY_KEY),
+    ]);
+    return NextResponse.json({ ok: true });
+  } catch {
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 }
+    );
+  }
+}
+
 export async function POST(request: NextRequest) {
   const apiKey = process.env.RADIATION_API_KEY;
   const auth = request.headers.get("authorization");
