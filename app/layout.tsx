@@ -13,8 +13,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Radiation Monitor",
-  description: "Real-time radiation level monitoring",
+  title: "Alex's Radiation Monitor",
+  description: "Ever wanted to know the radiation levels at Alex's house?",
+  openGraph: {
+    title: "Alex's Radiation Monitor",
+    description: "Ever wanted to know the radiation levels at Alex's house?",
+  },
 };
 
 export default function RootLayout({
